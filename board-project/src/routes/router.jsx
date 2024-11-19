@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "posts",
+        index: true,
         element: (
           <div>
             <Posts />

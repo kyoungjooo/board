@@ -1,0 +1,72 @@
+[
+  {
+    "postId": 1,
+    "userId": "user1",
+    "userName": "user1",
+    "title": "안녕하세요 가입인사",
+    "content": "오늘 가입했습니다 가입인사 글 올려요~ 댓글 많이 부탁드려요"
+  },
+  {
+    "postId": 2,
+    "userId": "user2",
+    "userName": "user2",
+    "title": "오늘은 화요일",
+    "content": "오늘 최저기온 -2도 🥶"
+  },
+  {
+    "postId": 3,
+    "userId": "user3",
+    "userName": "user3",
+    "title": "아이스 더블 에스프레소 크림 라떼",
+    "content": "마셔본사람"
+  },
+  {
+    "postId": 4,
+    "userId": "user4",
+    "userName": "user4",
+    "title": "저녁에 뭐 먹지",
+    "content": "오늘 저녁 메뉴 골라주세요.."
+  },
+  {
+    "postId": 5,
+    "userId": "user5",
+    "userName": "user5",
+    "title": "아무말",
+    "content": "선선한 바람이 불어올 땐 폭신한 고구마 케이크"
+  },
+  {
+    "postId": 6,
+    "userId": "user6",
+    "userName": "user6",
+    "title": "타이틀6",
+    "content": "콘텐트6"
+  },
+  {
+    "postId": 7,
+    "userId": "user7",
+    "userName": "user7",
+    "title": "타이틀7",
+    "content": "콘텐트7"
+  },
+  {
+    "postId": 8,
+    "userId": "user8",
+    "userName": "user8",
+    "title": "타이틀8",
+    "content": "콘텐트8"
+  },
+  {
+    "postId": 9,
+    "userId": "user9",
+    "userName": "user9",
+    "title": "타이틀9",
+    "content": "콘텐트9"
+  },
+  {
+    "postId": 10,
+    "userId": "user10",
+    "userName": "user10",
+    "title": "타이틀10",
+    "content": "콘텐트10"
+  }
+]

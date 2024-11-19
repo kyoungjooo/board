@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <>
       <div>
-        <Link to="/posts">메인으로</Link>
+        <Link to="/">메인으로</Link>
         <Outlet />
       </div>
     </>
