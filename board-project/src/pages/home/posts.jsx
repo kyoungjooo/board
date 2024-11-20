@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Post from "./post";
-import { data } from "@remix-run/router";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);

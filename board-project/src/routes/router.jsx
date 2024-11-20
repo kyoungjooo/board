@@ -5,6 +5,8 @@ import NotFound from "../pages/not-found";
 import PostDetail from "../pages/post-detail";
 import Edit from "../pages/edit";
 import Nav from "../components/nav";
+import User from "../pages/user";
+import Login from "../pages/login";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,23 @@ const router = createBrowserRouter([
         element: (
           <div>
             <Edit />
+          </div>
+        ),
+      },
+      /* protectedRouter로 로그인이 된 상태에서만 경로 이동 가능하도록 설정 */
+      {
+        path: "user",
+        element: (
+          <div>
+            <User />
+          </div>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <div>
+            <Login />
           </div>
         ),
       },
