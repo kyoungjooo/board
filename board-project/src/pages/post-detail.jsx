@@ -1,12 +1,10 @@
 import { useLocation, useParams } from "react-router-dom";
 
 const PostDetail = () => {
-  const param = useParams();
-  console.log(param);
   const location = useLocation();
   const post = location.state.post;
-  const { postId, userId, userName, title, content } = post;
-  console.log(post.title);
+  const { postId, userName, userId, title, content } = post;
+
   return (
     <>
       <div>

@@ -4,16 +4,16 @@ import App from "../App";
 import NotFound from "../pages/not-found";
 import PostDetail from "../pages/post-detail";
 import Edit from "../pages/edit";
-import Nav from "../components/nav";
 import User from "../pages/user";
 import Login from "../pages/login";
+import Home from "../pages/home/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <div>
-        <Nav />
+        <Home />
       </div>
     ),
     errorElement: (

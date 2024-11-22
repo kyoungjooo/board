@@ -16,7 +16,6 @@ const Nav = () => {
         </button>
         <Link to="login">로그인하기</Link>
       </div>
-      <Outlet />
     </>
   );
 };
