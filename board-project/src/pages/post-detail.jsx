@@ -2,8 +2,8 @@ import { useLocation, useParams } from "react-router-dom";
 
 const PostDetail = () => {
   const location = useLocation();
-  const post = location.state.post;
-  const { postId, userName, userId, title, content } = post;
+  const posts = location.state.post;
+  const { postId, userName, userId, title, content } = posts;
 
   return (
     <>

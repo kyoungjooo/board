@@ -38,14 +38,6 @@ const router = createBrowserRouter([
           </div>
         ),
       },
-      {
-        path: "post/:postId/edit",
-        element: (
-          <div>
-            <Edit />
-          </div>
-        ),
-      },
       /* protectedRouter로 로그인이 된 상태에서만 경로 이동 가능하도록 설정 */
       {
         path: "user",
