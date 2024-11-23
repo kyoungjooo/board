@@ -38,6 +38,7 @@ const router = createBrowserRouter([
           </div>
         ),
       },
+
       /* protectedRouter로 로그인이 된 상태에서만 경로 이동 가능하도록 설정 */
       {
         path: "user",
