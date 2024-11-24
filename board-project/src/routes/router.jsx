@@ -3,10 +3,10 @@ import Posts from "../pages/home/posts";
 import App from "../App";
 import NotFound from "../pages/not-found";
 import PostDetail from "../pages/post-detail";
-import Edit from "../pages/edit";
 import User from "../pages/user";
 import Login from "../pages/login";
 import Home from "../pages/home/home";
+import AddPosting from "../pages/addPosting";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +35,14 @@ const router = createBrowserRouter([
         element: (
           <div>
             <PostDetail />
+          </div>
+        ),
+      },
+      {
+        path: "post/posting",
+        element: (
+          <div>
+            <AddPosting />
           </div>
         ),
       },

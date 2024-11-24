@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { usePosts } from "../../context/postContext";
 import Edit from "../edit";
 import { useState } from "react";
+import Button from "../../components/button";
 
 const Posts = () => {
   const { posts, updatePosts } = usePosts();
@@ -21,7 +22,6 @@ const Posts = () => {
     const updatedPosts = copy.map((copyEl) => {
       return copyEl.postId == updated.postId ? updated : copyEl;
     });
-    console.log(updatedPosts);
     updatePosts(updatedPosts);
   };
 
@@ -30,6 +30,11 @@ const Posts = () => {
     let copy = [...posts];
     const deletedPost = copy.filter((copyEl) => copyEl.postId !== post.postId);
     updatePosts(deletedPost);
+  };
+  //새로운 게시글 추가
+  const addNewPosting = () => {
+    console.log("이동");
+    navigate("post/posting");
   };
 
   return (
@@ -56,6 +61,7 @@ const Posts = () => {
           setIsEditing={setIsEditing}
         />
       )}
+      <Button text="글 작성하기" onClick={addNewPosting} />
     </>
   );
 };
