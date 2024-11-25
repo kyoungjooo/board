@@ -1,10 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDarkMode } from "../context/darkModeContext";
 import { IoMoon } from "react-icons/io5";
 import { MdWbSunny } from "react-icons/md";
+import Button from "./button";
+import { useLogin } from "../context/loginContext";
 
 const Nav = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isLogin, handleLogin, userData } = useLogin();
+  const { userName, userId, password } = userData;
+  const handleLogout = () => {
+    handleLogin();
+  };
+
+  console.log(isLogin);
+  console.log(userName);
   return (
     <>
       <div>
@@ -14,7 +24,10 @@ const Nav = () => {
           {!isDarkMode && <IoMoon />}
           {isDarkMode && <MdWbSunny />}
         </button>
-        <Link to="login">로그인하기</Link>
+        {isLogin && <Button text="로그아웃" onClick={handleLogout}></Button>}
+        {!isLogin && <Link to="login">로그인</Link>}
+
+        <span>{userName}</span>
       </div>
     </>
   );

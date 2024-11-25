@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePosts } from "../context/postContext";
 
 const AddPosting = () => {
+  const { posts } = usePosts();
+  const [newPost, setNewPost] = useState(posts);
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
   const navigate = useNavigate();
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   const handleValue = (e) => {
     const { name, value } = e.target;

@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { DarkModeProvider } from "./context/darkModeContext";
+import { IsLoginProvider } from "./context/loginContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <DarkModeProvider>
-    <App />
+    <IsLoginProvider>
+      <App />
+    </IsLoginProvider>
   </DarkModeProvider>
 );
 
