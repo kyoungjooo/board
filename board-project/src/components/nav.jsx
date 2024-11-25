@@ -26,7 +26,6 @@ const Nav = () => {
         </button>
         {isLogin && <Button text="로그아웃" onClick={handleLogout}></Button>}
         {!isLogin && <Link to="login">로그인</Link>}
-
         <span>{userName}</span>
       </div>
     </>

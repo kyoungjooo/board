@@ -1,15 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePosts } from "../context/postContext";
+import { useLogin } from "../context/loginContext";
+import { v4 as uuidv4 } from "uuid";
 
 const AddPosting = () => {
-  const { posts } = usePosts();
-  const [newPost, setNewPost] = useState(posts);
+  const { posts, updatePosts } = usePosts();
+  const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
+  const { userName, userId, password } = userData;
+
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
   const navigate = useNavigate();
+  const id = uuidv4();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newPost = {
+      postId: id,
+      userId,
+      userName,
+      title,
+      content,
+    };
+    updatePosts([...posts, newPost]);
+    navigate("/");
   };
 
   const handleValue = (e) => {
@@ -22,13 +37,13 @@ const AddPosting = () => {
     }
   };
   const postingComplete = () => {
-    navigate("/");
+    // navigate("/");
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          <span>userName</span>
+          <span>{userName}</span>
           <input
             type="text"
             name="title"

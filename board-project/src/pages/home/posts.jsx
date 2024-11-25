@@ -33,7 +33,7 @@ const Posts = () => {
   };
   //새로운 게시글 추가
   const addNewPosting = () => {
-    //navigate("post/posting");
+    navigate("post/posting");
   };
 
   return (

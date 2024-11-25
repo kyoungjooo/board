@@ -1,4 +1,4 @@
-const Modal = () => {
+const Modal = ({ children }) => {
   return (
     <>
       <div>Modal</div>
