@@ -28,55 +28,63 @@
     "userId": "user3",
     "userName": "user3",
     "title": "아이스 더블 에스프레소 크림 라떼",
-    "content": "마셔본사람"
+    "content": "마셔본사람",
+    "comments": []
   },
   {
     "postId": 4,
     "userId": "user4",
     "userName": "user4",
     "title": "저녁에 뭐 먹지",
-    "content": "오늘 저녁 메뉴 골라주세요.."
+    "content": "오늘 저녁 메뉴 골라주세요..",
+    "comments": []
   },
   {
     "postId": 5,
     "userId": "user5",
     "userName": "user5",
     "title": "아무말",
-    "content": "선선한 바람이 불어올 땐 폭신한 고구마 케이크"
+    "content": "선선한 바람이 불어올 땐 폭신한 고구마 케이크",
+    "comments": []
   },
   {
     "postId": 6,
     "userId": "user6",
     "userName": "user6",
     "title": "타이틀6",
-    "content": "콘텐트6"
+    "content": "콘텐트6",
+    "comments": []
   },
   {
     "postId": 7,
     "userId": "user7",
     "userName": "user7",
     "title": "타이틀7",
-    "content": "콘텐트7"
+    "content": "콘텐트7",
+    "comments": []
   },
   {
     "postId": 8,
     "userId": "user8",
     "userName": "user8",
     "title": "타이틀8",
-    "content": "콘텐트8"
+    "content": "콘텐트8",
+    "comments": []
   },
   {
     "postId": 9,
     "userId": "user9",
     "userName": "user9",
     "title": "타이틀9",
-    "content": "콘텐트9"
+    "content": "콘텐트9",
+    "comments": []
   },
   {
     "postId": 10,
     "userId": "user10",
     "userName": "user10",
     "title": "타이틀10",
-    "content": "콘텐트10"
+    "content": "콘텐트10",
+    "comments": []
   }
 ]
