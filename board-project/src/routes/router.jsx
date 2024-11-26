@@ -7,6 +7,7 @@ import User from "../pages/user";
 import Login from "../pages/login";
 import Home from "../pages/home/home";
 import AddPosting from "../pages/addPosting";
+import ProtectedRouter from "../pages/protectedRouter";
 
 const router = createBrowserRouter([
   {
@@ -32,17 +33,15 @@ const router = createBrowserRouter([
       },
       {
         path: "post/:postId",
-        element: (
-          <div>
-            <PostDetail />
-          </div>
-        ),
+        element: <PostDetail />,
       },
       {
         path: "post/posting",
         element: (
           <div>
-            <AddPosting />
+            <ProtectedRouter>
+              <AddPosting />
+            </ProtectedRouter>
           </div>
         ),
       },

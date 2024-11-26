@@ -3,12 +3,14 @@ import { usePosts } from "../../context/postContext";
 import Edit from "../edit";
 import { useState } from "react";
 import Button from "../../components/button";
+import { useLogin } from "../../context/loginContext";
 
 const Posts = () => {
   const { posts, updatePosts } = usePosts();
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
   const navigate = useNavigate();
+  const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
   const handleNavigate = (post) => {
     navigate(`/post/${post.postId}`, { state: { post } });
   };
@@ -45,10 +47,14 @@ const Posts = () => {
             <span>{post.userName}</span>
             <h3 onClick={() => handleNavigate(post)}>{post.title}</h3>
             {/* 현재 로그인한 유저와 userId가 같은 게시물만 보여주기 */}
-            <span className="btns-wrap">
-              <button onClick={() => toggleEditPost(post)}>수정하기</button>
-              <button onClick={() => handleDelete(post)}>삭제하기</button>
-            </span>
+            {isLogin && userData.userId == post.userId ? (
+              <span className="btns-wrap">
+                <button onClick={() => toggleEditPost(post)}>수정하기</button>
+                <button onClick={() => handleDelete(post)}>삭제하기</button>
+              </span>
+            ) : (
+              ""
+            )}
           </li>
         ))}
       </ul>

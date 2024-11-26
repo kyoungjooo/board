@@ -4,6 +4,7 @@ import { usePosts } from "../context/postContext";
 import { useLogin } from "../context/loginContext";
 import { v4 as uuidv4 } from "uuid";
 import { useRef } from "react";
+import Modal from "../components/modal";
 
 const AddPosting = () => {
   const { posts, updatePosts } = usePosts();
