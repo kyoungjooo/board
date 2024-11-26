@@ -8,7 +8,6 @@ const ProtectedRouter = ({ children }) => {
   if (!isLogin) {
     return <Navigate to="/login" replace />;
   }
-
-  return { children };
+  return children;
 };
 export default ProtectedRouter;
