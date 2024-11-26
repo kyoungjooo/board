@@ -9,11 +9,13 @@ const PostDetail = () => {
   const location = useLocation();
   const post = location.state.post;
   const { posts, updatePosts } = usePosts();
-  const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
+  const { isLogin, userData } = useLogin();
   const { postId } = useParams();
   const [reply, setReply] = useState("");
-  const targetPost = posts.find((post) => post.postId == parseInt(postId));
-  const { userName, userId, title, content, comments } = targetPost;
+
+  const targetPost = posts.find((post) => post.postId == postId);
+
+  const { userName, userId, title, content, comments = [] } = targetPost;
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
 
@@ -24,8 +26,9 @@ const PostDetail = () => {
       userName: userData.userName,
       comment: reply,
     };
-
-    let copy = [...posts].map((copyEl) => {
+    let copy = [...posts];
+    console.log(copy);
+    copy = copy.map((copyEl) => {
       if (copyEl.postId == postId) {
         return { ...copyEl, comments: [...copyEl.comments, newReply] };
       }
@@ -51,6 +54,7 @@ const PostDetail = () => {
     });
     updatePosts(updatedPosts);
   };
+
   return (
     <>
       <div>

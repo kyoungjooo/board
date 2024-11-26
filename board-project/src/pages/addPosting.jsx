@@ -9,7 +9,7 @@ import Modal from "../components/modal";
 const AddPosting = () => {
   const { posts, updatePosts } = usePosts();
   const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
-  const { userName, userId, password } = userData;
+  const { userName, userId, password } = userData || {};
 
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");

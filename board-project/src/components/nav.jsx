@@ -12,9 +12,6 @@ const Nav = () => {
   const handleLogout = () => {
     handleLogin();
   };
-
-  console.log(isLogin);
-  console.log(userName);
   return (
     <>
       <div>

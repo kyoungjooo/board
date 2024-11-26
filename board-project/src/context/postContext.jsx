@@ -4,13 +4,19 @@ const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("/data/post-data.json");
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    fetch("/data/post-data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-      });
+    fetchPosts();
   }, []);
+
   const updatePosts = (updated) => {
     setPosts(updated);
   };
