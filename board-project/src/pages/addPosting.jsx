@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePosts } from "../context/postContext";
 import { useLogin } from "../context/loginContext";
 import { v4 as uuidv4 } from "uuid";
+import { useRef } from "react";
 
 const AddPosting = () => {
   const { posts, updatePosts } = usePosts();
@@ -23,9 +24,13 @@ const AddPosting = () => {
       title,
       content,
     };
-    updatePosts([...posts, newPost]);
+    updatePosts([newPost, ...posts]);
     navigate("/");
   };
+  const inputFocus = useRef();
+  useEffect(() => {
+    inputFocus.current.focus();
+  }, []);
 
   const handleValue = (e) => {
     const { name, value } = e.target;
@@ -39,6 +44,7 @@ const AddPosting = () => {
   const postingComplete = () => {
     // navigate("/");
   };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -49,6 +55,7 @@ const AddPosting = () => {
             name="title"
             value={title}
             onChange={handleValue}
+            ref={inputFocus}
           ></input>
         </div>
         <textarea

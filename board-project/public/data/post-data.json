@@ -4,14 +4,24 @@
     "userId": "user1",
     "userName": "user1",
     "title": "안녕하세요 가입인사",
-    "content": "오늘 가입했습니다 가입인사 글 올려요~ 댓글 많이 부탁드려요"
+    "content": "오늘 가입했습니다 가입인사 글 올려요~ 댓글 많이 부탁드려요",
+    "comments": [
+      { "userId": "user2", "userName": "user2", "comment": "반가워요" },
+      { "userId": "user3", "userName": "user3", "comment": "ㅎㅇ" },
+      { "userId": "user4", "userName": "user4", "comment": "히히" }
+    ]
   },
   {
     "postId": 2,
     "userId": "user2",
     "userName": "user2",
     "title": "오늘은 화요일",
-    "content": "오늘 최저기온 -2도 🥶"
+    "content": "오늘 최저기온 -2도 🥶",
+    "comments": [
+      { "userId": "user2", "userName": "user2", "comment": "반가워요" },
+      { "userId": "user3", "userName": "user3", "comment": "ㅎㅇ" },
+      { "userId": "user4", "userName": "user4", "comment": "히히" }
+    ]
   },
   {
     "postId": 3,

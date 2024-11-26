@@ -12,6 +12,7 @@ const Posts = () => {
   const handleNavigate = (post) => {
     navigate(`/post/${post.postId}`, { state: { post } });
   };
+
   //게시글 수정
   const toggleEditPost = (post) => {
     setIsEditing((prev) => !prev);
