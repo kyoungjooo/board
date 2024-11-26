@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Comment from "../components/comment";
 import { usePosts } from "../context/postContext";
+import { useLogin } from "../context/loginContext";
 
 const PostDetail = () => {
   const { posts, updatePosts } = usePosts();
+  const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
   const { postId } = useParams();
   const [reply, setReply] = useState("");
   const targetPost = posts.find((post) => post.postId == parseInt(postId));
@@ -12,14 +14,19 @@ const PostDetail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newReply = { userId, userName, comment: reply };
-    let copy = [...posts];
-    copy = copy.map((copyEl) => {
+    const newReply = {
+      userId: userData.userId,
+      userName: userData.userName,
+      comment: reply,
+    };
+
+    let copy = [...posts].map((copyEl) => {
       if (copyEl.postId == postId) {
         return { ...copyEl, comments: [...copyEl.comments, newReply] };
       }
       return copyEl;
     });
+    updatePosts(copy);
   };
 
   return (
