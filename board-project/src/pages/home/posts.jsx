@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { usePosts } from "../../context/postContext";
 import Edit from "../edit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/button";
 import { useLogin } from "../../context/loginContext";
 
@@ -15,12 +15,19 @@ const Posts = () => {
     navigate(`/post/${post.postId}`, { state: { post } });
   };
   const [page, setPage] = useState(0);
+  let result = [];
+  const chunkSize = 5;
+
+  for (let i = 0; i < posts.length; i += chunkSize) {
+    result.push(posts.slice(i, i + chunkSize));
+  }
 
   //게시글 수정
   const toggleEditPost = (post) => {
     setIsEditing((prev) => !prev);
     setEditingPost(post);
   };
+
   const updatedPost = (updated) => {
     let copy = [...posts];
     const updatedPosts = copy.map((copyEl) => {
@@ -46,8 +53,8 @@ const Posts = () => {
   return (
     <>
       <Button text="글 작성하기" onClick={addNewPosting} />
-      {posts.length > 0 &&
-        posts[page]?.map((post, i) => (
+      {result.length > 0 &&
+        result[page]?.map((post, i) => (
           <ul key={i}>
             <li key={post.postId}>
               <span>{post.userName}</span>
@@ -72,7 +79,7 @@ const Posts = () => {
         />
       )}
       <div className="pagenation">
-        {posts.map((post, i) => {
+        {result.map((post, i) => {
           return <button onClick={() => handlePagenation(i)}>{i + 1}</button>;
         })}
       </div>

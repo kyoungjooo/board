@@ -8,26 +8,25 @@ import Edit from "./edit";
 const PostDetail = () => {
   const location = useLocation();
   const post = location.state.post;
+  console.log(post);
   const { posts, updatePosts } = usePosts();
   const { isLogin, userData } = useLogin();
   const { postId } = useParams();
   const [reply, setReply] = useState("");
-
-  const targetPost = posts.find((post) => post.postId == postId);
-
+  const targetPost = posts.flat().find((post) => post.postId == postId);
   const { userName, userId, title, content, comments = [] } = targetPost;
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
 
+  //댓글입력
   const handleSubmit = (e) => {
     e.preventDefault();
     const newReply = {
       userId: userData.userId,
       userName: userData.userName,
-      comment: reply,
+      comment: reply || [],
     };
     let copy = [...posts];
-    console.log(copy);
     copy = copy.map((copyEl) => {
       if (copyEl.postId == postId) {
         return { ...copyEl, comments: [...copyEl.comments, newReply] };
@@ -42,6 +41,7 @@ const PostDetail = () => {
     const deletedPost = copy.filter((copyEl) => copyEl.postId !== post.postId);
     updatePosts(deletedPost);
   };
+
   //게시글 수정
   const toggleEditPost = (post) => {
     setIsEditing((prev) => !prev);
@@ -52,6 +52,7 @@ const PostDetail = () => {
     const updatedPosts = copy.map((copyEl) => {
       return copyEl.postId == updated.postId ? updated : copyEl;
     });
+
     updatePosts(updatedPosts);
   };
 

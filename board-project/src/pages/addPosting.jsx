@@ -8,8 +8,9 @@ import Modal from "../components/modal";
 
 const AddPosting = () => {
   const { posts, updatePosts } = usePosts();
-  const { isLogin, handleLogin, settingUserLogin, userData } = useLogin();
-  const { userName, userId, password } = userData || {};
+  console.log(posts);
+  const { userData } = useLogin();
+  const { userName, userId } = userData || {};
 
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
@@ -24,6 +25,7 @@ const AddPosting = () => {
       userName,
       title,
       content,
+      comments: [],
     };
     updatePosts([newPost, ...posts]);
     navigate("/");
