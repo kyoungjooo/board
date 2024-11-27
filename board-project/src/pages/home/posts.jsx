@@ -50,6 +50,15 @@ const Posts = () => {
   const handlePagenation = (i) => {
     setPage(i);
   };
+  const handleMovePage = (e) => {
+    const clicked = e.target.innerText;
+    if (clicked === "이전" && page > 0) {
+      return setPage((prev) => prev - 1);
+    }
+    if (clicked === "다음" && page < posts.length / chunkSize - 1) {
+      return setPage((prev) => prev + 1);
+    }
+  };
   return (
     <>
       <Button text="글 작성하기" onClick={addNewPosting} />
@@ -59,7 +68,6 @@ const Posts = () => {
             <li key={post.postId}>
               <span>{post.userName}</span>
               <h3 onClick={() => handleNavigate(post)}>{post.title}</h3>
-              {/* 현재 로그인한 유저와 userId가 같은 게시물만 보여주기 */}
               {isLogin && userData.userId === post.userId && (
                 <span className="btns-wrap">
                   <button onClick={() => toggleEditPost(post)}>수정하기</button>
@@ -79,9 +87,13 @@ const Posts = () => {
         />
       )}
       <div className="pagenation">
-        {result.map((post, i) => {
-          return <button onClick={() => handlePagenation(i)}>{i + 1}</button>;
-        })}
+        <div>
+          <button onClick={handleMovePage}>이전</button>
+          {result.map((_, i) => {
+            return <button onClick={() => handlePagenation(i)}>{i + 1}</button>;
+          })}
+          <button onClick={handleMovePage}>다음</button>
+        </div>
       </div>
     </>
   );

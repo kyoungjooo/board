@@ -8,7 +8,6 @@ import Modal from "../components/modal";
 
 const AddPosting = () => {
   const { posts, updatePosts } = usePosts();
-  console.log(posts);
   const { userData } = useLogin();
   const { userName, userId } = userData || {};
 

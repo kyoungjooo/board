@@ -52,7 +52,6 @@ const PostDetail = () => {
     const updatedPosts = copy.map((copyEl) => {
       return copyEl.postId == updated.postId ? updated : copyEl;
     });
-
     updatePosts(updatedPosts);
   };
 
