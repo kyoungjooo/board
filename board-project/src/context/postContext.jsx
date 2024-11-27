@@ -3,16 +3,23 @@ import { createContext, useContext, useEffect, useState } from "react";
 const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
-  const [posts, setPosts] = useState([]);
+  let [posts, setPosts] = useState([]);
+  let result = [];
+  const chunkSize = 5;
   const fetchPosts = async () => {
     try {
       const response = await fetch("/data/post-data.json");
       const data = await response.json();
-      setPosts(data);
+      for (let i = 0; i < data.length; i += chunkSize) {
+        result.push(data.slice(i, i + chunkSize));
+      }
+      setPosts(result);
+      console.log(posts);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(posts);
   useEffect(() => {
     fetchPosts();
   }, []);

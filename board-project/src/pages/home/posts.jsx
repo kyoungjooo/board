@@ -14,6 +14,7 @@ const Posts = () => {
   const handleNavigate = (post) => {
     navigate(`/post/${post.postId}`, { state: { post } });
   };
+  const [page, setPage] = useState(0);
 
   //게시글 수정
   const toggleEditPost = (post) => {
@@ -38,26 +39,29 @@ const Posts = () => {
   const addNewPosting = () => {
     navigate("post/posting");
   };
-
+  //페이징
+  const handlePagenation = (i) => {
+    setPage(i);
+  };
   return (
     <>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.postId}>
-            <span>{post.userName}</span>
-            <h3 onClick={() => handleNavigate(post)}>{post.title}</h3>
-            {/* 현재 로그인한 유저와 userId가 같은 게시물만 보여주기 */}
-            {isLogin && userData.userId == post.userId ? (
-              <span className="btns-wrap">
-                <button onClick={() => toggleEditPost(post)}>수정하기</button>
-                <button onClick={() => handleDelete(post)}>삭제하기</button>
-              </span>
-            ) : (
-              ""
-            )}
-          </li>
+      <Button text="글 작성하기" onClick={addNewPosting} />
+      {posts.length > 0 &&
+        posts[page]?.map((post, i) => (
+          <ul key={i}>
+            <li key={post.postId}>
+              <span>{post.userName}</span>
+              <h3 onClick={() => handleNavigate(post)}>{post.title}</h3>
+              {/* 현재 로그인한 유저와 userId가 같은 게시물만 보여주기 */}
+              {isLogin && userData.userId === post.userId && (
+                <span className="btns-wrap">
+                  <button onClick={() => toggleEditPost(post)}>수정하기</button>
+                  <button onClick={() => handleDelete(post)}>삭제하기</button>
+                </span>
+              )}
+            </li>
+          </ul>
         ))}
-      </ul>
       {isEditing && (
         <Edit
           posts={posts}
@@ -67,7 +71,11 @@ const Posts = () => {
           setIsEditing={setIsEditing}
         />
       )}
-      <Button text="글 작성하기" onClick={addNewPosting} />
+      <div className="pagenation">
+        {posts.map((post, i) => {
+          return <button onClick={() => handlePagenation(i)}>{i + 1}</button>;
+        })}
+      </div>
     </>
   );
 };
