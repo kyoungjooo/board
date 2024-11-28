@@ -42,33 +42,39 @@ const Login = () => {
   }, [isLogin]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          placeholder="닉네임"
-          name="userName"
-          value={login.userName}
-          onChange={handleUserInput}
-        ></input>
-        <input
-          type="text"
-          placeholder="아이디"
-          name="userId"
-          value={login.userId}
-          onChange={handleUserInput}
-        ></input>
-        <input
-          type="password"
-          placeholder="비밀번호"
-          name="password"
-          value={login.password}
-          onChange={handleUserInput}
-        />
-      </div>
-      <span className="alert"></span>
-      <Button text="로그인" />
-    </form>
+    <div className="container login-container">
+      <form onSubmit={handleSubmit}>
+        <h3 className="menu-title">Login</h3>
+        <div className="input-wrap">
+          <input
+            className="login-input"
+            type="text"
+            placeholder="닉네임"
+            name="userName"
+            value={login.userName}
+            onChange={handleUserInput}
+          ></input>
+          <input
+            className="login-input"
+            type="text"
+            placeholder="아이디"
+            name="userId"
+            value={login.userId}
+            onChange={handleUserInput}
+          ></input>
+          <input
+            className="login-input"
+            type="password"
+            placeholder="비밀번호"
+            name="password"
+            value={login.password}
+            onChange={handleUserInput}
+          />
+        </div>
+        <span className="alert"></span>
+        <Button text="로그인" className="login-btn" />
+      </form>
+    </div>
   );
 };
 export default Login;

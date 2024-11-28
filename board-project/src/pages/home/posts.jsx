@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePosts } from "../../context/postContext";
-import { useEffect, useState } from "react";
 import { useLogin } from "../../context/loginContext";
+
 import Button from "../../components/button";
 import Edit from "../edit";
+// icon
 import { FaRegEdit } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
+
 const Posts = () => {
   const { posts, updatePosts } = usePosts();
   const { isLogin, userData } = useLogin();
