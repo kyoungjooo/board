@@ -58,11 +58,11 @@ const Posts = () => {
     setPage(i);
   };
   const handleMovePage = (e) => {
-    const clicked = e.target.innerText;
-    if (clicked === "이전" && page > 0) {
+    const clicked = e.target.closest("button");
+    if (clicked.title === "이전" && page > 0) {
       return setPage((prev) => prev - 1);
     }
-    if (clicked === "다음" && page < posts.length / chunkSize - 1) {
+    if (clicked.title === "다음" && page < posts.length / chunkSize - 1) {
       return setPage((prev) => prev + 1);
     }
   };
