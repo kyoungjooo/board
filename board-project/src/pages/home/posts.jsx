@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useLogin } from "../../context/loginContext";
 import Button from "../../components/button";
 import Edit from "../edit";
-
+import { FaRegEdit } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
+import { MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore } from "react-icons/md";
 const Posts = () => {
   const { posts, updatePosts } = usePosts();
   const { isLogin, userData } = useLogin();
@@ -12,8 +15,9 @@ const Posts = () => {
   const [editingPost, setEditingPost] = useState({});
   const [page, setPage] = useState(0);
   const [chunkedPosts, setChunkedPosts] = useState([]);
-  const chunkSize = 5;
+  const chunkSize = 4;
   const navigate = useNavigate();
+
   const handleNavigate = (post) =>
     navigate(`/post/${post.postId}`, { state: { post } });
 
@@ -63,41 +67,75 @@ const Posts = () => {
     }
   };
   return (
-    <>
-      <Button text="글 작성하기" onClick={addNewPosting} />
-      <ul>
-        {chunkedPosts.length > 0 &&
-          chunkedPosts[page]?.map((post, i) => (
-            <li key={post.postId}>
-              <span>{post.userName}</span>
-              <h3 onClick={() => handleNavigate(post)}>{post.title}</h3>
-              {isLogin && userData.userId === post.userId && (
-                <span className="btns-wrap">
-                  <button onClick={() => toggleEditPost(post)}>수정하기</button>
-                  <button onClick={() => handleDelete(post)}>삭제하기</button>
-                </span>
-              )}
-            </li>
-          ))}
-      </ul>
-      {isEditing && (
-        <Edit
-          posts={posts}
-          toggleEditPost={toggleEditPost}
-          updatedPost={updatedPost}
-          editingPost={editingPost}
-          setIsEditing={setIsEditing}
+    <div className="container main-container">
+      <main className="board-main">
+        <Button
+          className="post-btn"
+          text="글 작성하기"
+          onClick={addNewPosting}
         />
-      )}
+        <ul className="posts-wrap">
+          {chunkedPosts.length > 0 &&
+            chunkedPosts[page]?.map((post, i) => (
+              <li
+                key={post.postId}
+                className="main-post-card"
+                onClick={() => handleNavigate(post)}
+              >
+                <div className="main- post-inner">
+                  <span className="main-user-name">{post.userName}</span>
+                  <h3 className="main-post-title">{post.title}</h3>
+                  <p className="main-post-content">{post.content}</p>
+                </div>
+                {isLogin && userData.userId === post.userId && (
+                  <span className="btns-wrap">
+                    <button
+                      className="round-btn btn-edit"
+                      title="수정하기"
+                      onClick={() => toggleEditPost(post)}
+                    >
+                      <FaRegEdit className="edit-btn-icon" />
+                    </button>
+                    <button
+                      className="round-btn btn-delete"
+                      title="삭제하기"
+                      onClick={() => handleDelete(post)}
+                    >
+                      <TiDelete className="delete-btn-icon" />
+                    </button>
+                  </span>
+                )}
+              </li>
+            ))}
+        </ul>
+        {isEditing && (
+          <Edit
+            posts={posts}
+            toggleEditPost={toggleEditPost}
+            updatedPost={updatedPost}
+            editingPost={editingPost}
+            setIsEditing={setIsEditing}
+          />
+        )}
+      </main>
       <div className="pagenation">
         {/* 게시글이 5개 미만이면 페이지네이션 안보이게 처리 */}
-        <button onClick={handleMovePage}>이전</button>
+        <button title="이전" className="prev move-btn" onClick={handleMovePage}>
+          <MdNavigateBefore />
+        </button>
         {chunkedPosts.map((_, i) => (
-          <button onClick={() => handlePagenation(i)}>{i + 1}</button>
+          <button
+            className={`page-btn ${page === i ? "active" : ""}`}
+            onClick={() => handlePagenation(i)}
+          >
+            {i + 1}
+          </button>
         ))}
-        <button onClick={handleMovePage}>다음</button>
+        <button title="다음" className="next move-btn" onClick={handleMovePage}>
+          <MdNavigateNext />
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 export default Posts;

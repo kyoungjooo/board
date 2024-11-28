@@ -29,7 +29,9 @@ const Nav = () => {
           {!isLogin && (
             <Button text="Login" onClick={() => navigate("login")} />
           )}
-          <span>{isLogin && userName}</span>
+          {isLogin && (
+            <span className="user-name">{`반가워요 ${userName} 님`}</span>
+          )}
         </div>
       </nav>
     </>

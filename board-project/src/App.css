@@ -100,8 +100,13 @@ nav,
 section {
   display: block;
 }
+html {
+  height: 100%;
+}
 body {
   line-height: 1;
+  height: 100%;
+  overflow: hidden;
 }
 ol,
 ul {
@@ -132,8 +137,18 @@ table {
   --color-white: #f9f9f9;
   --color-btn: #6568ea;
   --side-padding: 0 64px;
+  --color-800: #3c3c3c;
+  --color-700: #5b5b5b;
+  --color-600: #6e6e6e;
+  --color-500: #979797;
+  --color-400: #b7b7b7;
+  --color-300: #dadada;
+  --color-200: #eaeaea;
+  --color-100: #f3f3f3;
 }
-
+#root {
+  height: 100%;
+}
 a {
   text-decoration: none;
   color: var(--color-black);
@@ -143,7 +158,7 @@ a {
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  background-color: var(--color-bg);
+  background-color: var(--color-100);
   padding: var(--side-padding);
 }
 .link-home {
@@ -178,4 +193,114 @@ a {
 .default-btn:hover {
   background-color: #5558db;
   cursor: pointer;
+}
+.user-name {
+  margin-left: 12px;
+}
+.post-btn {
+  position: absolute;
+  right: 64px;
+  top: -10px;
+  transform: translateY(-100%);
+}
+.main-container {
+  display: flex;
+  height: 85%;
+  align-items: center;
+  justify-content: center;
+}
+.board-main {
+  position: relative;
+  padding: var(--side-padding);
+  width: 100%;
+}
+.posts-wrap {
+  width: 100%;
+  min-height: 520px;
+}
+.main-post-card {
+  display: flex;
+  background-color: var(--color-bg-dark);
+  padding: 16px 24px 20px 24px;
+  border-radius: 8px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.main-post-card:hover {
+  background-color: var(--color-200);
+}
+.main-post-card + .main-post-card {
+  margin-top: 10px;
+}
+.main-user-name {
+  display: inline-block;
+  margin: 4px 0 12px 0;
+  color: var(--color-600);
+}
+.main-post-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.main-post-content {
+  margin-top: 14px;
+  color: var(--color-800);
+}
+.main-post-card .btns-wrap {
+  display: flex;
+  gap: 8px;
+}
+.round-btn {
+  border-radius: 50%;
+  border: 0;
+  width: 36px;
+  height: 36px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.round-btn.btn-edit {
+  font-size: 20px;
+  position: relative;
+}
+.edit-btn-icon {
+  position: relative;
+  top: -1px;
+  right: -1px;
+}
+.edit-btn-icon:hover,
+.delete-btn-icon:hover {
+  color: var(--color-btn);
+}
+.pagenation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+.pagenation .page-btn {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  width: 30px;
+  color: var(--color-500);
+}
+.pagenation .page-btn.active {
+  color: var(--color-btn);
+  font-weight: bold;
+}
+.pagenation .move-btn {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 22px;
+  position: relative;
+  top: 2px;
+  color: var(--color-400);
 }
