@@ -1,10 +1,10 @@
 import { useState } from "react";
-
+import { useLogin } from "../context/loginContext";
 const Edit = ({ posts, updatedPost, editingPost, setIsEditing }) => {
   const editPost = posts.find((post) => post.postId == editingPost.postId);
   const [title, setUpdateTitle] = useState(editPost.title);
   const [content, setUpdateContent] = useState(editPost.content);
-
+  const { userData } = useLogin();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -30,7 +30,7 @@ const Edit = ({ posts, updatedPost, editingPost, setIsEditing }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <span>userName</span>
+        <span>{userData.userName}</span>
         <input
           type="text"
           name="title"

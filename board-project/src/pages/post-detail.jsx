@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import Comment from "../components/comment";
 import { usePosts } from "../context/postContext";
 import { useLogin } from "../context/loginContext";
+import Comment from "../components/comment";
 import Edit from "./edit";
 
 const PostDetail = () => {
   const location = useLocation();
   const post = location.state.post;
-  console.log(post);
   const { posts, updatePosts } = usePosts();
   const { isLogin, userData } = useLogin();
   const { postId } = useParams();
   const [reply, setReply] = useState("");
   const targetPost = posts.flat().find((post) => post.postId == postId);
-  const { userName, userId, title, content, comments = [] } = targetPost;
+  const { userName, title, content, comments = [] } = targetPost;
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
 
@@ -34,7 +33,9 @@ const PostDetail = () => {
       return copyEl;
     });
     updatePosts(copy);
+    setReply("");
   };
+
   //게시글 삭제
   const handleDelete = (post) => {
     let copy = [...posts];
@@ -49,9 +50,9 @@ const PostDetail = () => {
   };
   const updatedPost = (updated) => {
     let copy = [...posts];
-    const updatedPosts = copy.map((copyEl) => {
-      return copyEl.postId == updated.postId ? updated : copyEl;
-    });
+    const updatedPosts = copy.map((copyEl) =>
+      copyEl.postId == updated.postId ? updated : copyEl
+    );
     updatePosts(updatedPosts);
   };
 
@@ -85,9 +86,9 @@ const PostDetail = () => {
           </form>
         )}
         <ul>
-          {comments.map((reply) => {
-            return <Comment reply={reply} />;
-          })}
+          {comments.map((reply) => (
+            <Comment reply={reply} />
+          ))}
         </ul>
       </div>
       {isEditing && (

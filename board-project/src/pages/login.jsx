@@ -12,17 +12,6 @@ const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
-  let user = localStorage.getItem("user");
-  let usersInfo = localStorage.getItem("usersInfo");
-  //로그인된 user가 없으면
-  useEffect(() => {
-    if (!user) {
-      localStorage.setItem("user", JSON.stringify({}));
-    }
-    if (!usersInfo) {
-      localStorage.setItem("usersInfo", JSON.stringify([]));
-    }
-  }, []);
 
   const resetInput = () => {
     setLogin(() => {
@@ -41,7 +30,6 @@ const Login = () => {
   //로컬스토리지에 로그인한 유저 정보를 저장한다.
   const handleSubmit = (e) => {
     e.preventDefault();
-
     localStorage.setItem("user", JSON.stringify(login));
     handleLogin();
     settingUserLogin(login);

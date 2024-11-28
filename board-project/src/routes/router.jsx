@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Posts from "../pages/home/posts";
 import App from "../App";
-import NotFound from "../pages/not-found";
+import NotFound from "../pages/home/not-found";
 import PostDetail from "../pages/post-detail";
 import User from "../pages/user";
 import Login from "../pages/login";
@@ -12,11 +12,7 @@ import ProtectedRouter from "../pages/protectedRouter";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div>
-        <Home />
-      </div>
-    ),
+    element: <Home />,
     errorElement: (
       <div>
         <NotFound />
