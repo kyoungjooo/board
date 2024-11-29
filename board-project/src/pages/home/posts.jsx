@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePosts } from "../../context/postContext";
 import { useLogin } from "../../context/loginContext";
-
 import Button from "../../components/button";
 import Edit from "../edit";
 // icon
@@ -10,6 +9,8 @@ import { FaRegEdit } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
+import RoundBtn from "../../components/roundBtn";
+import Modal from "../../components/modal";
 
 const Posts = () => {
   const { posts, updatePosts } = usePosts();
@@ -32,10 +33,17 @@ const Posts = () => {
     setChunkedPosts(result);
   }, [posts]);
 
+  /*   useEffect(() => {
+    setIsEditing(false);
+  }, []); */
   //게시글 수정
   const toggleEditPost = (post) => {
     setIsEditing((prev) => !prev);
     setEditingPost(post);
+  };
+  const checkModalStatus = (status) => {
+    console.log(status);
+    setIsEditing(status);
   };
 
   const updatedPost = (updated) => {
@@ -80,45 +88,46 @@ const Posts = () => {
         <ul className="posts-wrap">
           {chunkedPosts.length > 0 &&
             chunkedPosts[page]?.map((post, i) => (
-              <li
-                key={post.postId}
-                className="main-post-card"
-                onClick={() => handleNavigate(post)}
-              >
-                <div className="main- post-inner">
+              <li key={post.postId} className="main-post-card">
+                <div
+                  className="main-post-inner"
+                  onClick={() => handleNavigate(post)}
+                >
                   <span className="main-user-name">{post.userName}</span>
                   <h3 className="main-post-title">{post.title}</h3>
                   <p className="main-post-content">{post.content}</p>
                 </div>
                 {isLogin && userData.userId === post.userId && (
                   <span className="btns-wrap">
-                    <button
-                      className="round-btn btn-edit"
+                    <RoundBtn
+                      className="btn-edit"
                       title="수정하기"
                       onClick={() => toggleEditPost(post)}
                     >
                       <FaRegEdit className="edit-btn-icon" />
-                    </button>
-                    <button
-                      className="round-btn btn-delete"
+                    </RoundBtn>
+                    <RoundBtn
+                      className="btn-delete"
                       title="삭제하기"
                       onClick={() => handleDelete(post)}
                     >
                       <TiDelete className="delete-btn-icon" />
-                    </button>
+                    </RoundBtn>
                   </span>
                 )}
               </li>
             ))}
         </ul>
         {isEditing && (
-          <Edit
-            posts={posts}
-            toggleEditPost={toggleEditPost}
-            updatedPost={updatedPost}
-            editingPost={editingPost}
-            setIsEditing={setIsEditing}
-          />
+          <Modal isEditing={isEditing} checkModalStatus={checkModalStatus}>
+            <Edit
+              posts={posts}
+              toggleEditPost={toggleEditPost}
+              updatedPost={updatedPost}
+              editingPost={editingPost}
+              setIsEditing={setIsEditing}
+            />
+          </Modal>
         )}
       </main>
       <div className="pagenation">

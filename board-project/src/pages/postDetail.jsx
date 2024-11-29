@@ -4,8 +4,12 @@ import { usePosts } from "../context/postContext";
 import { useLogin } from "../context/loginContext";
 import Comment from "../components/comment";
 import Edit from "./edit";
-import { FaRegCommentDots } from "react-icons/fa";
 import Button from "../components/button";
+import { FaRegCommentDots } from "react-icons/fa";
+import Modal from "../components/modal";
+import RoundBtn from "../components/roundBtn";
+import { FaRegEdit } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 
 const PostDetail = () => {
   const location = useLocation();
@@ -19,9 +23,10 @@ const PostDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
 
-  //댓글입력
+  //댓글입력 추가
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (reply.trim().length < 1) return;
     const newReply = {
       userId: userData.userId,
       userName: userData.userName,
@@ -57,6 +62,10 @@ const PostDetail = () => {
     );
     updatePosts(updatedPosts);
   };
+  const checkModalStatus = (status) => {
+    console.log(status);
+    setIsEditing(status);
+  };
 
   return (
     <div className="container detail-container">
@@ -68,15 +77,27 @@ const PostDetail = () => {
 
             {isLogin && userData.userId == post.userId ? (
               <span className="btns-wrap">
-                <button onClick={() => toggleEditPost(post)}>수정하기</button>
-                <button onClick={() => handleDelete(post)}>삭제하기</button>
+                <RoundBtn
+                  title="수정하기"
+                  className="btn-edit"
+                  onClick={() => toggleEditPost(post)}
+                >
+                  {" "}
+                  <FaRegEdit className="edit-btn-icon" />
+                </RoundBtn>
+                <RoundBtn
+                  title="삭제하기"
+                  className="btn-delete"
+                  onClick={() => handleDelete(post)}
+                >
+                  <TiDelete className="delete-btn-icon" />
+                </RoundBtn>
               </span>
             ) : (
               ""
             )}
           </div>
           <p className="main-post-content">{content}</p>
-
           <div className="comment">
             <div className="comment-line">
               <FaRegCommentDots className="comment-text" />
@@ -92,7 +113,7 @@ const PostDetail = () => {
                   value={reply}
                   placeholder="댓글을 남겨보세요"
                   onChange={(e) => setReply(e.target.value)}
-                ></input>
+                />
                 <Button text="등록" className="comment-submit" />
               </form>
             )}
@@ -104,13 +125,15 @@ const PostDetail = () => {
           </div>
         </div>
         {isEditing && (
-          <Edit
-            posts={posts}
-            toggleEditPost={toggleEditPost}
-            updatedPost={updatedPost}
-            editingPost={editingPost}
-            setIsEditing={setIsEditing}
-          />
+          <Modal isEditing={isEditing} checkModalStatus={checkModalStatus}>
+            <Edit
+              posts={posts}
+              toggleEditPost={toggleEditPost}
+              updatedPost={updatedPost}
+              editingPost={editingPost}
+              setIsEditing={setIsEditing}
+            />
+          </Modal>
         )}
       </div>
     </div>

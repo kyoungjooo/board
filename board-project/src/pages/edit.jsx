@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLogin } from "../context/loginContext";
+import Button from "../components/button";
+
 const Edit = ({ posts, updatedPost, editingPost, setIsEditing }) => {
   const editPost = posts.find((post) => post.postId == editingPost.postId);
   const [title, setUpdateTitle] = useState(editPost.title);
@@ -43,9 +45,7 @@ const Edit = ({ posts, updatedPost, editingPost, setIsEditing }) => {
         value={content}
         onChange={handleValue}
       ></textarea>
-      <button type="submit" onClick={handleEditComplete}>
-        수정완료
-      </button>
+      <Button text="수정완료" onClick={handleEditComplete} />
     </form>
   );
 };
