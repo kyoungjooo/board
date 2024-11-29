@@ -209,6 +209,7 @@ a {
   justify-content: center;
   padding: var(--side-padding);
   padding-top: 70px;
+  position: relative;
 }
 .board-main {
   position: relative;
@@ -310,8 +311,10 @@ a {
 }
 /* login */
 .menu-title {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bold;
+}
+.login-title {
   margin-bottom: 48px;
 }
 .login-container {
@@ -346,7 +349,6 @@ a {
 }
 /* post-detail */
 .detail-container {
-  padding-top: 24px;
   padding-bottom: 24px;
 }
 .detail-container .main-user-name {
@@ -379,6 +381,7 @@ a {
 }
 .detail-inner {
   width: 100%;
+  position: relative;
 }
 .comment {
   width: 100%;
@@ -445,7 +448,89 @@ a {
   height: 350px;
   box-sizing: border-box;
   border-radius: 8px;
+  position: relative;
 }
-.hide {
-  display: none;
+.modal-content .close-btn {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  border: 0;
+  background-color: transparent;
+  font-size: 30px;
+  display: flex;
+  cursor: pointer;
+}
+
+.modal-inner {
+  height: inherit;
+  padding: 28px 32px;
+  box-sizing: border-box;
+}
+.modal-inner .edit-post {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.modal-inner .edit-post .edit-header > span {
+  display: block;
+}
+.input-text {
+  width: 100%;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--color-400);
+  text-indent: 10px;
+  margin-top: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+}
+.input-content {
+  border-radius: 8px;
+  height: 170px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-400);
+  margin-top: 10px;
+  outline: none;
+  resize: none;
+}
+.edit-header .user-name {
+  font-weight: bold;
+}
+/* add posting */
+.posting-form {
+  width: 100%;
+}
+.main-title {
+  position: absolute;
+  top: -10px;
+  transform: translateY(-100%);
+}
+.main-title .total-post {
+  font-size: 15px;
+  margin-left: 6px;
+  color: var(--color-700);
+}
+.input-text.add-post {
+  margin: 0;
+}
+.post-detail .input-content {
+  height: 450px;
+}
+.modal-content.alert-content {
+  width: 300px;
+  height: 190px;
+}
+.alert-content .modal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+.alert-text {
+  margin-bottom: 24px;
 }

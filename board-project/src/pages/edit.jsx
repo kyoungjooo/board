@@ -30,21 +30,27 @@ const Edit = ({ posts, updatedPost, editingPost, setIsEditing }) => {
     setIsEditing(false);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <span>{userData.userName}</span>
-        <input
-          type="text"
-          name="title"
-          value={title}
+    <form onSubmit={handleSubmit} className="edit-post">
+      <div className="edit-content-wrap">
+        <div className="edit-header">
+          <span className="user-name">{userData.userName}</span>
+          <input
+            className="input-text"
+            type="text"
+            name="title"
+            value={title}
+            onChange={handleValue}
+            placeholder="제목을 입력해 주세요."
+          ></input>
+        </div>
+        <textarea
+          className="input-content"
+          name="content"
+          value={content}
           onChange={handleValue}
-        ></input>
+          placeholder="내용을 입력하세요."
+        />
       </div>
-      <textarea
-        name="content"
-        value={content}
-        onChange={handleValue}
-      ></textarea>
       <Button text="수정완료" onClick={handleEditComplete} />
     </form>
   );

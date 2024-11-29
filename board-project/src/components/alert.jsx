@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
-const Modal = ({ children, isEditing, checkModalStatus }) => {
-  const [close, setClose] = useState(isEditing);
+import Button from "./button";
+const Alert = ({ children, alert, checkModalStatus }) => {
+  const [close, setClose] = useState(alert);
   const handleCloseModal = () => {
     setClose(false);
     checkModalStatus(false);
@@ -9,7 +10,10 @@ const Modal = ({ children, isEditing, checkModalStatus }) => {
   return (
     <>
       <div className="modal-dimmed" onClick={() => handleCloseModal()}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="modal-content alert-content"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button className="close-btn" onClick={handleCloseModal}>
             <IoCloseOutline />
           </button>
@@ -19,4 +23,4 @@ const Modal = ({ children, isEditing, checkModalStatus }) => {
     </>
   );
 };
-export default Modal;
+export default Alert;

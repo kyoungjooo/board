@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { usePosts } from "../context/postContext";
 import { useLogin } from "../context/loginContext";
 import Comment from "../components/comment";
@@ -13,6 +13,7 @@ import { TiDelete } from "react-icons/ti";
 
 const PostDetail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const post = location.state.post;
   const { posts, updatePosts } = usePosts();
   const { isLogin, userData } = useLogin();
@@ -62,14 +63,16 @@ const PostDetail = () => {
     );
     updatePosts(updatedPosts);
   };
-  const checkModalStatus = (status) => {
-    console.log(status);
-    setIsEditing(status);
-  };
+  const checkModalStatus = (status) => setIsEditing(status);
 
   return (
     <div className="container detail-container">
       <div className="detail-inner">
+        <Button
+          className="post-btn"
+          text="목록"
+          onClick={() => navigate("/")}
+        />
         <div className="post-detail">
           <div className="post-header">
             <h3 className="main-post-title">{title}</h3>

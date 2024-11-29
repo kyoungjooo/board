@@ -33,10 +33,6 @@ const Posts = () => {
     setChunkedPosts(result);
   }, [posts]);
 
-  /*   useEffect(() => {
-    setIsEditing(false);
-  }, []); */
-  //게시글 수정
   const toggleEditPost = (post) => {
     setIsEditing((prev) => !prev);
     setEditingPost(post);
@@ -80,6 +76,10 @@ const Posts = () => {
   return (
     <div className="container main-container">
       <main className="board-main">
+        <h3 className="menu-title main-title">
+          전체글보기
+          <span className="total-post">{`${posts.length}개의 글`}</span>
+        </h3>
         <Button
           className="post-btn"
           text="글 작성하기"

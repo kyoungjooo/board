@@ -5,7 +5,7 @@ import { useLogin } from "../context/loginContext";
 //로그인 버튼을 누르면 로컬에 아이디와 비밀번호를 {userId, userName, password}저장한다.
 
 const Login = () => {
-  const { isLogin, handleLogin, userData, settingUserLogin } = useLogin();
+  const { isLogin, handleLogin, settingUserLogin } = useLogin();
   const [login, setLogin] = useState({
     userName: "",
     userId: "",
@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className="container login-container">
       <form onSubmit={handleSubmit}>
-        <h3 className="menu-title">Login</h3>
+        <h3 className="menu-title login-title">로그인</h3>
         <div className="input-wrap">
           <input
             className="login-input"

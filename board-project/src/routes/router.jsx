@@ -30,11 +30,9 @@ const router = createBrowserRouter([
       {
         path: "post/posting",
         element: (
-          <div>
-            <ProtectedRouter>
-              <AddPosting />
-            </ProtectedRouter>
-          </div>
+          <ProtectedRouter>
+            <AddPosting />
+          </ProtectedRouter>
         ),
       },
 
