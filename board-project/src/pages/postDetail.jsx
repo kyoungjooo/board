@@ -19,7 +19,7 @@ const PostDetail = () => {
   const { isLogin, userData } = useLogin();
   const { postId } = useParams();
   const [reply, setReply] = useState("");
-  const targetPost = posts.flat().find((post) => post.postId == postId);
+  const targetPost = posts.find((post) => post.postId == postId);
   const { userName, title, content, comments = [] } = targetPost;
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState({});
@@ -45,9 +45,10 @@ const PostDetail = () => {
   };
 
   //게시글 삭제
-  const handleDelete = (post) => {
+  const handleDelete = (postId) => {
+    navigate("/");
     let copy = [...posts];
-    const deletedPost = copy.filter((copyEl) => copyEl.postId !== post.postId);
+    const deletedPost = copy.filter((copyEl) => copyEl.postId !== postId);
     updatePosts(deletedPost);
   };
 
@@ -91,7 +92,7 @@ const PostDetail = () => {
                 <RoundBtn
                   title="삭제하기"
                   className="btn-delete"
-                  onClick={() => handleDelete(post)}
+                  onClick={() => handleDelete(postId)}
                 >
                   <TiDelete className="delete-btn-icon" />
                 </RoundBtn>
@@ -104,7 +105,7 @@ const PostDetail = () => {
           <div className="comment">
             <div className="comment-line">
               <FaRegCommentDots className="comment-text" />
-              댓글
+              댓글{` ${comments.length}개`}
             </div>
             {isLogin && (
               <form onSubmit={handleSubmit} className="comment-form">

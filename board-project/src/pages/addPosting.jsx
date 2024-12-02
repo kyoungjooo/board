@@ -77,8 +77,16 @@ const AddPosting = () => {
       </div>
       {alert && (
         <Alert alert={alert} checkModalStatus={checkModalStatus}>
-          <div className="alert-text">글자수는 5글자 이상 입력해야합니다.</div>
-          <Button text="확인" onClick={checkModalStatus}></Button>
+          <div className="alert-inner">
+            <div className="alert-text">
+              글자수는 5글자 이상 입력해야합니다.
+            </div>
+          </div>
+          <Button
+            text="확인"
+            className="alert-close"
+            onClick={checkModalStatus}
+          ></Button>
         </Alert>
       )}
     </div>

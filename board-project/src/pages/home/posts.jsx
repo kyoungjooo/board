@@ -38,7 +38,6 @@ const Posts = () => {
     setEditingPost(post);
   };
   const checkModalStatus = (status) => {
-    console.log(status);
     setIsEditing(status);
   };
 
@@ -51,9 +50,9 @@ const Posts = () => {
   };
 
   //게시글 삭제
-  const handleDelete = (post) => {
+  const handleDelete = ({ postId }) => {
     let copy = [...posts];
-    const deletedPost = copy.filter((copyEl) => copyEl.postId !== post.postId);
+    const deletedPost = copy.filter((copyEl) => copyEl.postId !== postId);
     updatePosts(deletedPost);
   };
   //새로운 게시글 추가
